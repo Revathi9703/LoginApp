@@ -9,7 +9,7 @@ const Splash = ({navigation}:any) => {
     useEffect(()=>{
       setTimeout(() => {
         setShow(true)
-      }, 2000);
+      }, 3000);
     },[]);
 
   return (

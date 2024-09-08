@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import Navigate from './src/Navigation';
+import store from './src/Redux/Store';
 
 const App = () => {
   return (

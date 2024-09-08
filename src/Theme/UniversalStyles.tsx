@@ -82,7 +82,7 @@ export const styles = StyleSheet.create({
     },
     errorText:{
       color: 'red',
-      textAlign: 'center',
+      textAlign: 'left',
       marginVertical: 5,
       fontSize:12,
       fontWeight:"500"
@@ -100,6 +100,7 @@ export const styles = StyleSheet.create({
       width:"80%",
       color:"#808080",
       fontSize:13, 
+      fontWeight:"600"
     },
     blueContainer:{
       height:50,

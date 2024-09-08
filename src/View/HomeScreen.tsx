@@ -9,7 +9,7 @@ const HomeScreen = ({navigation,route}:any) =>{
          <Text style={[styles.signText,{alignSelf:"center"}]}>{text.welcome} {route?.params?.name}</Text>
 
          <TouchableOpacity style={styles.blueContainer} 
-      onPress={()=>{navigation.navigate("Signin")}}>
+      onPress={()=>{navigation.push("Signin")}}>
         <Text style={styles.signText}>{text.logout}</Text>
      </TouchableOpacity>
         </View>

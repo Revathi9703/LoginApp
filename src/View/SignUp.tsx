@@ -21,6 +21,12 @@ const SignUp = ({navigation}:any) => {
   const [nameErr,setNameErr] = useState("");
   const [passErr,setPassErr] = useState('');
 
+  useEffect(()=>{
+   setUsername('');
+   setPhone('');
+   setPassword('');
+  },[]);
+
 
   const Validate = () =>{
     if(!username){
@@ -55,24 +61,26 @@ const SignUp = ({navigation}:any) => {
     }
   }
 
-
-
-
   const postData = async () => {
     try {
-      const response = await api.post('/register',{
-        phone:phone,
-        password: password,
-        name: username               
-      });
-      console.log('Response:', response.data);
-      if (response.data.status === true) {
-        navigation.navigate('HomeScreen',{name:username});
-      }
-    } catch (error) {
-        console.error('Unexpected Error:', error);
-      }
+        const response = await api.post('/register', {
+            phone: phone,
+            password: password,
+            name: username               
+        });
+        console.log('Response:', response.data);
+        if (response.data.status === true) {
+            navigation.navigate('HomeScreen', { name: username });
+        } else {
+            console.error('Registration failed:', response.data.message || 'No message provided');
+        }
+    } catch (error:any) {
+        if (error.response) {
+            console.error('Unexpected Error:',error.response.data );
+            Alert.alert("Invalid data or Data Already Exists");
+        }
     }
+}
 
 
   return (
@@ -88,6 +96,8 @@ const SignUp = ({navigation}:any) => {
       <View style={styles.textInput}>
        <Profile name='person-outline' color={'#808080'} size={20} style={{width:"10%"}}></Profile>
         <TextInput
+        placeholder='Enter your name'
+        placeholderTextColor={"#808080"}
          style={styles.input}
         value={username}
         onChangeText={(text)=>{
@@ -101,6 +111,8 @@ const SignUp = ({navigation}:any) => {
       <View style={styles.textInput}>
        <Phone name='phone' color={'#808080'} size={20} style={{width:"10%"}}></Phone>
         <TextInput
+        placeholder='0000000000'
+        placeholderTextColor={"#808080"}
          style={styles.input}
           keyboardType='number-pad'
           maxLength={10}
@@ -119,6 +131,8 @@ const SignUp = ({navigation}:any) => {
       <View style={styles.textInput}>
         <Password name='lock' size={20} color={"#808080"} style={{width:"10%"}}/>
         <TextInput
+        placeholder='password'
+        placeholderTextColor={"#808080"}
         style={styles.input }
         value={password}
         secureTextEntry={showtext?false:true}
@@ -148,7 +162,7 @@ const SignUp = ({navigation}:any) => {
      </TouchableOpacity>
 
      <Text style={{color:"black",alignSelf:"center",marginVertical:20,}}>{text.haveanAcc}<Text style={[styles.blackText,{textDecorationLine:"underline", zIndex: 1, }]} 
-     onPress={()=>navigation.navigate("Signin")}>{text.signIn}</Text></Text>
+     onPress={()=>navigation.push("Signin")}>{text.signIn}</Text></Text>
      
      <Text style={[styles.greyText,{marginVertical:43,width:"80%",alignSelf:"center",textAlign:"center"}]}>
       {text.terms}</Text>

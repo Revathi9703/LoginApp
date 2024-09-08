@@ -17,6 +17,11 @@ const Signin = ({navigation}:any) => {
   const [phoneErr,setPhoneErr] = useState('');
   const [passErr,setPassErr] = useState('');
 
+  useEffect(()=>{
+     setPhone('');
+     setPassword('');
+  },[]);
+
   const postData = async () => {
     try {
       const response = await api.post('/login', {
@@ -68,6 +73,8 @@ const Signin = ({navigation}:any) => {
       <View style={styles.textInput}>
       <Phone name='phone' color={'#808080'} size={20} style={{width:"10%"}}></Phone>
         <TextInput
+        placeholder='0000000000'
+        placeholderTextColor={"#808080"}
          style={styles.input}
           keyboardType='number-pad'
           maxLength={10}
@@ -86,6 +93,8 @@ const Signin = ({navigation}:any) => {
       <View style={styles.textInput}>
         <Password name='lock' size={20} color={"#808080"} style={{width:"10%"}}/>
         <TextInput
+        placeholder='password'
+        placeholderTextColor={"#808080"}
         style={styles.input}
         secureTextEntry={showtext?false:true}
         value={password}
@@ -123,7 +132,7 @@ const Signin = ({navigation}:any) => {
 
      <Text style={{color:"black",alignSelf:"center"}}>{text.dontHaveAcc}{''}
       <Text style={[styles.blackText,{textDecorationLine:"underline"}]} onPress={()=>{
-      navigation.navigate("SignUp")
+      navigation.push("SignUp")
      }}>{text.signUp}</Text></Text>
 
      <Text style={[styles.greyText,{marginVertical:20,width:"80%",alignSelf:"center"}]}>{text.terms}</Text>

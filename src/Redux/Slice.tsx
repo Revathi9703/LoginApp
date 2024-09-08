@@ -1,43 +1,27 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import api from './api'; // Path to your Axios instance
+import api from '../ApiService/index';
+import { API_END_POINTS } from '../ApiService/endpoints';
+import { createSlice } from '@reduxjs/toolkit';
 
-// Define the initial state
 const initialState = {
   data: null,
   loading: false,
   error: null,
 };
 
-// Create an async thunk for fetching data
-export const fetchData = createAsyncThunk('data/fetchData', async () => {
-  const response = await api.get('/your-endpoint');
-  return response.data;
-});
 
-// Create a slice
 const dataSlice = createSlice({
   name: 'data',
   initialState,
-  reducers: {},
-  extraReducers: (builder) => {
-    builder
-      .addCase(fetchData.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(fetchData.fulfilled, (state, action) => {
-        state.loading = false;
-        state.data = action.payload;
-      })
-      .addCase(fetchData.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.error.message;
-      });
+  reducers: {
+
+
+
+  },
+  extraReducers: () => {
   },
 });
 
-// Export the async thunk
-export { fetchData };
 
-// Export the reducer
-export default dataSlice.reducer;
+export const {} = dataSlice.reducer
+
+export default dataSlice;
