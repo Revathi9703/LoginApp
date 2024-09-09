@@ -9,6 +9,7 @@ import Apple from 'react-native-vector-icons/AntDesign';
 import axios from 'axios';
 import { styles } from '../Theme/UniversalStyles';
 import { text } from '../Theme/Text';
+import { Alert } from 'react-native';
 
 const Signin = ({navigation}:any) => {
   const [phone,setPhone] = useState('');
@@ -33,9 +34,10 @@ const Signin = ({navigation}:any) => {
         const getdata = response.data;
         console.log('name........:',getdata.data?.name);
         navigation.navigate('HomeScreen',{name:getdata?.data?.name});
-      }
+      }    
     } catch (error) {
         console.error('Unexpected Error:', error);
+        Alert.alert("Invalid Phone or Password ");
       }
     }
 

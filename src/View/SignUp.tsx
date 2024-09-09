@@ -77,7 +77,7 @@ const SignUp = ({navigation}:any) => {
     } catch (error:any) {
         if (error.response) {
             console.error('Unexpected Error:',error.response.data );
-            Alert.alert("Invalid data or Data Already Exists");
+        Alert.alert("Data Already Exists or Check your Internet");
         }
     }
 }
